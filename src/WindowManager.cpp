@@ -23,6 +23,16 @@ WindowManager::WindowManager(xcb_connection_t *conn, QObject *parent)
 
 //    xcb_grab_key(this->_conn, 1, screen->root, XCB_MOD_MASK_ANY, XCB_GRAB_ANY,
 //        XCB_GRAB_MODE_ASYNC, XCB_GRAB_MODE_ASYNC);
+    xcb_grab_keyboard_cookie_t grab_keyboard_cookie =
+        xcb_grab_keyboard(this->_conn, 1, this->_rootWindow, XCB_CURRENT_TIME,
+            XCB_GRAB_MODE_ASYNC, XCB_GRAB_MODE_ASYNC);
+    xcb_grab_keyboard_reply_t *grab_keyboard_reply =
+        xcb_grab_keyboard_reply(this->_conn, grab_keyboard_cookie, NULL);
+    if (grab_keyboard_reply->status != XCB_GRAB_STATUS_SUCCESS) {
+        qDebug() << "Failed to grab keyboard.";
+    }
+    free(grab_keyboard_reply);
+
     QCoreApplication::instance()->installNativeEventFilter(this);
 
     xcb_get_window_attributes_cookie_t window_attributes_cookie =
@@ -56,8 +66,11 @@ bool WindowManager::nativeEventFilter(const QByteArray &eventType,
         auto responseType = ev->response_type & ~0x80;
         switch (responseType) {
         case XCB_KEY_PRESS:
-            qDebug() << "XCB_KEY_PRESS";
+        {
+            xcb_key_press_event_t *key_press = (xcb_key_press_event_t*)ev;
+            qDebug() << "XCB_KEY_PRESS" << key_press->sequence << key_press->detail;
             break;
+        }
         case XCB_EXPOSE:
             qDebug() << "XCB_EXPOSE";
             break;
