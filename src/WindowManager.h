@@ -4,13 +4,15 @@
 #include <QObject>
 #include <QAbstractNativeEventFilter>
 
+#include <xcb/xcb.h>
+
 namespace madobe {
 
 class WindowManager : public QObject, public QAbstractNativeEventFilter
 {
     Q_OBJECT
 public:
-    explicit WindowManager(QObject *parent = nullptr);
+    explicit WindowManager(xcb_connection_t *conn, QObject *parent = nullptr);
     ~WindowManager();
 
     virtual bool nativeEventFilter(const QByteArray &eventType, void *message,
@@ -18,6 +20,9 @@ public:
 
 signals:
 
+private:
+    xcb_connection_t *_conn;
+    xcb_window_t _rootWindow;
 };
 
 } // namespace madobe
