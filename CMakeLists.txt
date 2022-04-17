@@ -7,7 +7,21 @@ find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem)
-find_package(Qt5 CONFIG REQUIRED COMPONENTS Dbus)
+find_package(Qt5 CONFIG REQUIRED COMPONENTS DBus)
+
+find_package(KDecoration2 REQUIRED)
 
 add_library(madobedecoration MODULE
+    src/madobedecoration.h
+    src/madobedecoration.cpp
+)
+
+target_link_libraries(madobedecoration
+    PUBLIC
+        Qt5::Core
+        Qt5::Gui
+        Qt5::DBus
+    PRIVATE
+        KDecoration2::KDecoration
+        KF5::CoreAddons
 )
