@@ -9,6 +9,9 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem)
 find_package(Qt5 CONFIG REQUIRED COMPONENTS DBus)
 
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+
 find_package(KDecoration2 REQUIRED)
 
 add_library(madobedecoration MODULE
@@ -24,4 +27,5 @@ target_link_libraries(madobedecoration
     PRIVATE
         KDecoration2::KDecoration
         KF5::CoreAddons
+        KF5::GuiAddons
 )
