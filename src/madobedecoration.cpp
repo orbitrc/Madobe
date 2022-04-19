@@ -4,6 +4,9 @@
 
 #include <KPluginFactory>
 #include <KDecoration2/Decoration>
+#include <KDecoration2/DecoratedClient>
+
+#include "logger.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(
     MadobeDecorationFactory,
@@ -24,7 +27,12 @@ namespace madobe {
 
     void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     {
-        // TODO: Implement.
+        auto c = this->client().toStrongRef();
+
+        Logger logger;
+        QString info = "Begin paint: from - " + c->caption() + "\n";
+        logger.info(info.toUtf8());
+
         QRect titleBarRect = QRect(QPoint(0, 0), QSize(100, 30));
         painter->setBrush(Qt::green);
         painter->drawRect(titleBarRect);
@@ -32,6 +40,9 @@ namespace madobe {
 
     void Decoration::init()
     {
+        auto c = this->client().toStrongRef();
+        (void)c;
+
         QRect titleBarRect = QRect(QPoint(0, 0), QSize(100, 30));
         this->setTitleBar(titleBarRect);
 
