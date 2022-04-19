@@ -66,7 +66,10 @@ void Decoration::init()
     auto c = this->client().toStrongRef();
     (void)c;
 
-    QRect titleBarRect = QRect(QPoint(0, 0), QSize(100, 30));
+    QRect titleBarRect = QRect(
+        QPoint(this->borderWidth(), this->borderWidth()),
+        QSize(100, 30)
+    );
     this->setTitleBar(titleBarRect);
 
     this->setBorders(QMargins(
