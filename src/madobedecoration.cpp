@@ -1,5 +1,7 @@
 #include "madobedecoration.h"
 
+#include <QPainter>
+
 #include <KPluginFactory>
 #include <KDecoration2/Decoration>
 
@@ -23,6 +25,19 @@ namespace madobe {
     void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     {
         // TODO: Implement.
+        QRect titleBarRect = QRect(QPoint(0, 0), QSize(100, 30));
+        painter->setBrush(Qt::green);
+        painter->drawRect(titleBarRect);
+    }
+
+    void Decoration::init()
+    {
+        QRect titleBarRect = QRect(QPoint(0, 0), QSize(100, 30));
+        this->setTitleBar(titleBarRect);
+
+        this->setBorders(QMargins(0, 30, 0, 0));
+
+        this->update();
     }
 }
 

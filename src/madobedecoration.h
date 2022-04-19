@@ -16,6 +16,10 @@ namespace madobe {
         virtual ~Decoration();
 
         void paint(QPainter *painter, const QRect& repaintRegion) override;
+
+    public slots:
+        void init() override;
+
     private:
     };
 }
