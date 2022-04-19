@@ -18,8 +18,23 @@ public:
 
     void paint(QPainter *painter, const QRect& repaintRegion) override;
 
+    int shadowWidth() const;
+
+    int resizeWidth() const;
+
+    int borderWidth() const;
+
+    int titleBarHeight() const;
+
+    int titleFontSize() const;
+
 public slots:
     void init() override;
+
+private slots:
+    void updateBorder();
+
+    void updateTitleBar();
 
 private:
 };
