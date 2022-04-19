@@ -6,22 +6,24 @@
 #include <KDecoration2/Decoration>
 
 namespace madobe {
-    class Decoration : public KDecoration2::Decoration
-    {
-        Q_OBJECT
-    public:
-        explicit Decoration(QObject *parent = nullptr,
-                const QVariantList& args = QVariantList());
 
-        virtual ~Decoration();
+class Decoration : public KDecoration2::Decoration
+{
+    Q_OBJECT
+public:
+    explicit Decoration(QObject *parent = nullptr,
+            const QVariantList& args = QVariantList());
 
-        void paint(QPainter *painter, const QRect& repaintRegion) override;
+    virtual ~Decoration();
 
-    public slots:
-        void init() override;
+    void paint(QPainter *painter, const QRect& repaintRegion) override;
 
-    private:
-    };
-}
+public slots:
+    void init() override;
+
+private:
+};
+
+} // namespace madobe
 
 #endif // _MADOBEDECORATION_H
