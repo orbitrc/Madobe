@@ -7,11 +7,13 @@
 #include <KDecoration2/DecoratedClient>
 
 #include "logger.h"
+#include "button.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(
     MadobeDecorationFactory,
     "madobe.json",
     registerPlugin<madobe::Decoration>();
+    registerPlugin<madobe::Button>();
 )
 
 namespace madobe {
@@ -20,6 +22,7 @@ Decoration::Decoration(QObject *parent, const QVariantList& args)
     : KDecoration2::Decoration(parent, args)
 {
     // TODO: Implement.
+    this->m_closeButton = nullptr;
 }
 
 Decoration::~Decoration()
@@ -59,6 +62,11 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     QFont font("sans-serif", 12, QFont::Bold);
     painter->setFont(font);
     painter->drawText(titleBarRect, Qt::AlignCenter, c->caption());
+
+    if (this->m_closeButton != nullptr) {
+        this->m_closeButton->setVisible(true);
+        this->m_closeButton->paint(painter, repaintRegion);
+    }
 }
 
 void Decoration::init()
@@ -85,6 +93,12 @@ void Decoration::init()
         this->resizeWidth() - this->borderWidth(),
         this->resizeWidth() - this->borderWidth()
     ));
+
+    // Init buttons.
+    if (this->m_closeButton == nullptr) {
+        this->m_closeButton = new Button(KDecoration2::DecorationButtonType::Close, this, this);
+        this->m_closeButton->setGeometry(QRectF(0, 0, 20, 20));
+    }
 
     this->update();
 }

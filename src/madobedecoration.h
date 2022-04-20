@@ -7,6 +7,8 @@
 
 namespace madobe {
 
+class Button;
+
 class Decoration : public KDecoration2::Decoration
 {
     Q_OBJECT
@@ -37,6 +39,7 @@ private slots:
     void updateTitleBar();
 
 private:
+    Button *m_closeButton;
 };
 
 } // namespace madobe

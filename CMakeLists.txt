@@ -17,6 +17,8 @@ find_package(KDecoration2 REQUIRED)
 add_library(madobedecoration MODULE
     src/madobedecoration.h
     src/madobedecoration.cpp
+    src/button.h
+    src/button.cpp
     src/logger.h
     src/logger.cpp
 )
