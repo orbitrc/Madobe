@@ -79,6 +79,13 @@ void Decoration::init()
         this->borderWidth()
     ));
 
+    this->setResizeOnlyBorders(QMargins(
+        this->resizeWidth() - this->borderWidth(),
+        this->resizeWidth() - this->borderWidth(),
+        this->resizeWidth() - this->borderWidth(),
+        this->resizeWidth() - this->borderWidth()
+    ));
+
     this->update();
 }
 
