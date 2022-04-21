@@ -1,0 +1,32 @@
+{
+  "border": {
+    "width": 4
+  },
+  "resize": {
+    "width": 4
+  },
+  "shadow": {
+    "width": 0
+  },
+  "titleBar": {
+    "height": 18,
+    "button": {
+      "width": 16,
+      "height": 14
+    },
+    "active": {
+      "color": "#000080",
+      "title": {
+        "color": "#ffffff",
+        "fontSize": 14
+      }
+    },
+    "inactive": {
+      "color": "#eeeeee",
+      "title": {
+        "color": "#000000",
+        "fontSize": 14
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@
 namespace madobe {
 
 class Button;
+class Theme;
 
 class Decoration : public KDecoration2::Decoration
 {
@@ -30,6 +31,15 @@ public:
 
     int titleFontSize() const;
 
+    //===============
+    // Properties
+    //===============
+   QString themeId() const;
+   void setThemeId(const QString& themeId);
+
+signals:
+   void themeIdChanged(const QString& themeId);
+
 public slots:
     void init() override;
 
@@ -38,8 +48,14 @@ private slots:
 
     void updateTitleBar();
 
+    void readConfFileThemeId();
+
+    void loadTheme();
+
 private:
     Button *m_closeButton;
+    QString m_themeId;
+    Theme *m_theme;
 };
 
 } // namespace madobe

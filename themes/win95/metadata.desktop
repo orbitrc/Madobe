@@ -1,0 +1,14 @@
+[MadobeDecorationTheme]
+Name=Win95
+Description=Win95 Madobe decoration theme
+
+Type=madobe-theme
+Author=Yojŏnja
+Email=hardboiled65@gmail.com
+Screenshot=win95.png
+License=MIT
+Version=0.1
+Theme-Id=win95
+Theme-API=1.0
+Website=https://github.com/orbitrc/Madobe
+
