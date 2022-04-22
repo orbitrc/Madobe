@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(madobe)
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(KF5_MIN_VERSION "5.68.0")
 
 find_package(ECM 1.0.0 REQUIRED NO_MODULE)

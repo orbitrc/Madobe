@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <QStringList>
 #include <QJsonDocument>
 #include <QJsonObject>
 
