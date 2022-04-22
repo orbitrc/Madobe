@@ -161,6 +161,11 @@ uint32_t Theme::load_image(uint8_t **to)
     *to = (uint8_t*)malloc(len);
     memcpy(*to, cairo_image_surface_get_data(surface), len);
 
+    // Free resources.
+    cairo_destroy(cr);
+    cairo_surface_destroy(surface);
+    g_object_unref(handle);
+
     return len;
 }
 
