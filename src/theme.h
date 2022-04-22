@@ -47,7 +47,8 @@ public:
 private:
     bool load();
 
-    uint32_t load_image(uint8_t **to);
+    uint32_t load_image(uint8_t **to, const char *filename,
+            uint32_t width, uint32_t height);
 
 private:
     std::string _id;
@@ -59,8 +60,11 @@ private:
     uint32_t _shadow_width;
     uint32_t _title_bar_height;
 
-    uint8_t* _border_top_left_data;
+    uint8_t *_border_top_left_data;
     uint32_t _border_top_left_len;
+
+    uint8_t *_border_left_data;
+    uint32_t _border_left_len;
 };
 
 } // namespace madobe

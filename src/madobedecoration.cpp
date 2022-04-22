@@ -60,6 +60,10 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     painter->setBrush(Qt::black);
     painter->drawRect(borderRect);
     // Border top left.
+    QRect borderTopLeftRect = QRect(
+        QPoint(0, 0),
+        QSize(this->borderWidth(), this->borderWidth())
+    );
     if (this->m_theme != nullptr &&
             this->m_theme->border_top_left_image() != nullptr) {
         logger.info("Found top-left border image.\n");
@@ -67,7 +71,23 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
             this->borderWidth(), this->borderWidth(),
             this->borderWidth() * 4,
             QImage::Format_RGBA8888);
-        painter->drawImage(borderRect, borderTopLeft, borderRect);
+        painter->drawImage(borderTopLeftRect, borderTopLeft, borderTopLeft.rect());
+    }
+    // Border left.
+    QRect borderLeftRect = QRect(
+        QPoint(0, this->borderWidth()),
+        QSize(
+            this->borderWidth(),
+            c->height() - (this->borderWidth() * 2)
+        )
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_left_image() != nullptr) {
+        QImage borderLeft(this->m_theme->border_left_image(),
+            this->borderWidth(), 1,
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderLeftRect, borderLeft, borderLeft.rect());
     }
 
     // Draw title bar.

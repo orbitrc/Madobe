@@ -87,6 +87,11 @@ const uint8_t* Theme::border_top_left_image() const
     return this->_border_top_left_data;
 }
 
+const uint8_t* Theme::border_left_image() const
+{
+    return this->_border_left_data;
+}
+
 //==================
 // Private Methods
 //==================
@@ -119,8 +124,16 @@ bool Theme::load()
         this->_title_bar_height = theme_json.int_value("titleBar.height",
             STANDALONE_TITLE_BAR_HEIGHT);
 
-        this->_border_top_left_len =
-            this->load_image(&(this->_border_top_left_data));
+        this->_border_top_left_len = this->load_image(
+            &(this->_border_top_left_data), "border-top-left.svg",
+            this->_border_width,
+            this->_border_width
+        );
+        this->_border_left_len = this->load_image(
+            &(this->_border_left_data), "border-left.svg",
+            this->_border_width,
+            1
+        );
 
         return true;
     }
@@ -128,9 +141,10 @@ bool Theme::load()
     return false;
 }
 
-uint32_t Theme::load_image(uint8_t **to)
+uint32_t Theme::load_image(uint8_t **to, const char *filename,
+        uint32_t width, uint32_t height)
 {
-    auto image_path = this->_images_dir + "/border-top-left.svg";
+    auto image_path = this->_images_dir + "/" + filename;
     if (!std::filesystem::exists(image_path)) {
         return 0;
     }
@@ -143,12 +157,12 @@ uint32_t Theme::load_image(uint8_t **to)
     RsvgRectangle viewport = {
         .x = 0.0,
         .y = 0.0,
-        .width = static_cast<double>(this->_border_width),
-        .height = static_cast<double>(this->_border_width),
+        .width = static_cast<double>(width),
+        .height = static_cast<double>(height),
     };
 
     cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
-        this->_border_width, this->_border_width);
+        width, height);
     cairo_t *cr = cairo_create(surface);
 
     rsvg_handle_render_document(handle, cr, &viewport, &err);
