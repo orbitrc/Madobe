@@ -59,6 +59,16 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     );
     painter->setBrush(Qt::black);
     painter->drawRect(borderRect);
+    // Border top left.
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_top_left_image() != nullptr) {
+        logger.info("Found top-left border image.\n");
+        QImage borderTopLeft(this->m_theme->border_top_left_image(),
+            this->borderWidth(), this->borderWidth(),
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderRect, borderTopLeft, borderRect);
+    }
 
     // Draw title bar.
     QRect titleBarRect = QRect(
@@ -114,7 +124,7 @@ void Decoration::init()
     // Init buttons.
     if (this->m_closeButton == nullptr) {
         this->m_closeButton = new Button(KDecoration2::DecorationButtonType::Close, this, this);
-        this->m_closeButton->setGeometry(QRectF(0, 0, 20, 20));
+        this->m_closeButton->setGeometry(QRectF(4, 4, 20, 20));
     }
 
     // Connections with settings.

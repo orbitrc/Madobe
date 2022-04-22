@@ -35,8 +35,19 @@ public:
     uint32_t shadow_width() const;
     uint32_t title_bar_height() const;
 
+    const uint8_t* border_top_left_image() const;
+    const uint8_t* border_top_image() const;
+    const uint8_t* border_top_right_image() const;
+    const uint8_t* border_left_image() const;
+    const uint8_t* border_right_image() const;
+    const uint8_t* border_bottom_left_image() const;
+    const uint8_t* border_bottom_image() const;
+    const uint8_t* border_bottom_right_image() const;
+
 private:
     bool load();
+
+    uint32_t load_image(uint8_t **to);
 
 private:
     std::string _id;
@@ -47,6 +58,9 @@ private:
     uint32_t _resize_width;
     uint32_t _shadow_width;
     uint32_t _title_bar_height;
+
+    uint8_t* _border_top_left_data;
+    uint32_t _border_top_left_len;
 };
 
 } // namespace madobe

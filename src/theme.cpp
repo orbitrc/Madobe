@@ -1,5 +1,7 @@
 #include "theme.h"
 
+#include <stdlib.h>
+
 #include <filesystem>
 
 #include <librsvg/rsvg.h>
@@ -19,6 +21,10 @@ Theme::Theme(const char *id)
 {
     this->_id = id;
 
+    // Init.
+    this->_border_top_left_data = nullptr;
+    this->_border_top_left_len = 0;
+
     if (this->_id == STANDALONE_THEME_ID) {
         return;
     }
@@ -30,6 +36,9 @@ Theme::Theme(const char *id)
 
 Theme::~Theme()
 {
+    if (this->_border_top_left_data != nullptr) {
+        free(this->_border_top_left_data);
+    }
 }
 
 const std::string& Theme::id() const
@@ -73,6 +82,11 @@ uint32_t Theme::title_bar_height() const
     return this->_title_bar_height;
 }
 
+const uint8_t* Theme::border_top_left_image() const
+{
+    return this->_border_top_left_data;
+}
+
 //==================
 // Private Methods
 //==================
@@ -105,10 +119,49 @@ bool Theme::load()
         this->_title_bar_height = theme_json.int_value("titleBar.height",
             STANDALONE_TITLE_BAR_HEIGHT);
 
+        this->_border_top_left_len =
+            this->load_image(&(this->_border_top_left_data));
+
         return true;
     }
 
     return false;
+}
+
+uint32_t Theme::load_image(uint8_t **to)
+{
+    auto image_path = this->_images_dir + "/border-top-left.svg";
+    if (!std::filesystem::exists(image_path)) {
+        return 0;
+    }
+
+    GError *err = NULL;
+    RsvgHandle *handle = rsvg_handle_new_from_file(
+        image_path.c_str(), &err
+    );
+
+    RsvgRectangle viewport = {
+        .x = 0.0,
+        .y = 0.0,
+        .width = static_cast<double>(this->_border_width),
+        .height = static_cast<double>(this->_border_width),
+    };
+
+    cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
+        this->_border_width, this->_border_width);
+    cairo_t *cr = cairo_create(surface);
+
+    rsvg_handle_render_document(handle, cr, &viewport, &err);
+
+//    uint32_t w = cairo_image_surface_get_width(surface);
+    uint32_t h = cairo_image_surface_get_height(surface);
+    uint32_t s = cairo_image_surface_get_stride(surface);
+    uint32_t len = s * h;
+
+    *to = (uint8_t*)malloc(len);
+    memcpy(*to, cairo_image_surface_get_data(surface), len);
+
+    return len;
 }
 
 } // namespace madobe
