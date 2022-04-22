@@ -24,6 +24,8 @@ Theme::Theme(const char *id)
     // Init.
     this->_border_top_left_data = nullptr;
     this->_border_top_left_len = 0;
+    this->_border_left_data = nullptr;
+    this->_border_left_len = 0;
 
     if (this->_id == STANDALONE_THEME_ID) {
         return;
