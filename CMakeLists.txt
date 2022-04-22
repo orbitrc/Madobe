@@ -21,6 +21,8 @@ add_library(madobedecoration MODULE
     src/button.cpp
     src/theme.h
     src/theme.cpp
+    src/theme-json.h
+    src/theme-json.cpp
     src/conf.h
     src/conf.cpp
     src/logger.h

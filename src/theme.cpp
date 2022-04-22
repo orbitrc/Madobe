@@ -4,6 +4,8 @@
 
 #include <librsvg/rsvg.h>
 
+#include "theme-json.h"
+
 #define STANDALONE_THEME_ID     "standalone"
 #define STANDALONE_BORDER_WIDTH 2
 #define STANDALONE_RESIZE_WIDTH 5
@@ -92,6 +94,18 @@ bool Theme::load()
             this->_images_dir = "";
             return false;
         }
+
+        ThemeJson theme_json(this->_json_path.c_str());
+        this->_border_width = theme_json.int_value("border.width",
+            STANDALONE_BORDER_WIDTH);
+        this->_resize_width = theme_json.int_value("resize.width",
+            STANDALONE_RESIZE_WIDTH);
+        this->_shadow_width = theme_json.int_value("shadow.width",
+            STANDALONE_SHADOW_WIDTH);
+        this->_title_bar_height = theme_json.int_value("titleBar.height",
+            STANDALONE_TITLE_BAR_HEIGHT);
+
+        return true;
     }
 
     return false;

@@ -93,13 +93,13 @@ void Decoration::init()
 
     QRect titleBarRect = QRect(
         QPoint(this->borderWidth(), this->borderWidth()),
-        QSize(100, 30)
+        QSize(100, this->titleBarHeight())
     );
     this->setTitleBar(titleBarRect);
 
     this->setBorders(QMargins(
         this->borderWidth(),
-        this->borderWidth() + 30,
+        this->borderWidth() + this->titleBarHeight(),
         this->borderWidth(),
         this->borderWidth()
     ));
