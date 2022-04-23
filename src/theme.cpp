@@ -156,11 +156,14 @@ uint32_t Theme::load_image(uint8_t **to, const char *filename,
         image_path.c_str(), &err
     );
 
+    RsvgDimensionData dimension;
+    rsvg_handle_get_dimensions(handle, &dimension);
+
     RsvgRectangle viewport = {
         .x = 0.0,
         .y = 0.0,
-        .width = static_cast<double>(width),
-        .height = static_cast<double>(height),
+        .width = static_cast<double>(dimension.width),
+        .height = static_cast<double>(dimension.height),
     };
 
     cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
