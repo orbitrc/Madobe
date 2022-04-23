@@ -63,8 +63,26 @@ private:
     uint8_t *_border_top_left_data;
     uint32_t _border_top_left_len;
 
+    uint8_t *_border_top_data;
+    uint32_t _border_top_len;
+
+    uint8_t *_border_top_right_data;
+    uint32_t _border_top_right_len;
+
     uint8_t *_border_left_data;
     uint32_t _border_left_len;
+
+    uint8_t *_border_right_data;
+    uint32_t _border_right_len;
+
+    uint8_t *_border_bottom_left_data;
+    uint32_t _border_bottom_left_len;
+
+    uint8_t *_border_bottom_data;
+    uint32_t _border_bottom_len;
+
+    uint8_t *_border_bottom_right_data;
+    uint32_t _border_bottom_right_len;
 };
 
 } // namespace madobe

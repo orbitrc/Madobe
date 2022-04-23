@@ -79,8 +79,27 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
         QPoint(this->borderWidth(), 0),
         QSize(c->width(), this->borderWidth())
     );
-    painter->setBrush(Qt::red);
-    painter->drawRect(borderTopRect);
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_top_image() != nullptr) {
+        QImage borderTop(this->m_theme->border_top_image(),
+            1, this->borderWidth(),
+            1 * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderTopRect, borderTop, borderTop.rect());
+    }
+    // Border top right.
+    QRect borderTopRightRect = QRect(
+        QPoint(c->width() + this->borderWidth(), 0),
+        QSize(this->borderWidth(), this->borderWidth())
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_top_right_image() != nullptr) {
+        QImage borderTopRight(this->m_theme->border_top_right_image(),
+            this->borderWidth(), this->borderWidth(),
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderTopRightRect, borderTopRight, borderTopRight.rect());
+    }
     // Border left.
     QRect borderLeftRect = QRect(
         QPoint(0, this->borderWidth()),
@@ -96,6 +115,64 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
             this->borderWidth() * 4,
             QImage::Format_RGBA8888);
         painter->drawImage(borderLeftRect, borderLeft, borderLeft.rect());
+    }
+    // Border right.
+    QRect borderRightRect = QRect(
+        QPoint(this->borderWidth() + c->width(), this->borderWidth()),
+        QSize(this->borderWidth(), c->height() + (this->titleBarHeight()))
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_right_image() != nullptr) {
+        QImage borderRight(this->m_theme->border_right_image(),
+            this->borderWidth(), 1,
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderRightRect, borderRight, borderRight.rect());
+    }
+    // Border bottom left.
+    QRect borderBottomLeftRect = QRect(
+        QPoint(0, this->borderWidth() + c->height() + this->titleBarHeight()),
+        QSize(this->borderWidth(), this->borderWidth())
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_bottom_left_image() != nullptr) {
+        QImage borderBottomLeft(this->m_theme->border_bottom_left_image(),
+            this->borderWidth(), this->borderWidth(),
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderBottomLeftRect, borderBottomLeft, borderBottomLeft.rect());
+    }
+    // Border bottom.
+    QRect borderBottomRect = QRect(
+        QPoint(
+            this->borderWidth(),
+            this->borderWidth() + c->height() + this->titleBarHeight()
+        ),
+        QSize(c->width(), this->borderWidth())
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_bottom_image() != nullptr) {
+        QImage borderBottom(this->m_theme->border_bottom_image(),
+            1, this->borderWidth(),
+            1 * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderBottomRect, borderBottom, borderBottom.rect());
+    }
+    // Border bottom right.
+    QRect borderBottomRightRect = QRect(
+        QPoint(
+            this->borderWidth() + c->width(),
+            c->height() + this->borderWidth() + this->titleBarHeight()
+        ),
+        QSize(this->borderWidth(), this->borderWidth())
+    );
+    if (this->m_theme != nullptr &&
+            this->m_theme->border_bottom_right_image() != nullptr) {
+        QImage borderBottomRight(this->m_theme->border_bottom_right_image(),
+            this->borderWidth(), this->borderWidth(),
+            this->borderWidth() * 4,
+            QImage::Format_RGBA8888);
+        painter->drawImage(borderBottomRightRect, borderBottomRight, borderBottomRight.rect());
     }
 
     // Draw title bar.

@@ -24,8 +24,20 @@ Theme::Theme(const char *id)
     // Init.
     this->_border_top_left_data = nullptr;
     this->_border_top_left_len = 0;
+    this->_border_top_data = nullptr;
+    this->_border_top_len = 0;
+    this->_border_top_right_data = nullptr;
+    this->_border_top_right_len = 0;
     this->_border_left_data = nullptr;
     this->_border_left_len = 0;
+    this->_border_right_data = nullptr;
+    this->_border_right_len = 0;
+    this->_border_bottom_left_data = nullptr;
+    this->_border_bottom_left_len = 0;
+    this->_border_bottom_data = nullptr;
+    this->_border_bottom_len = 0;
+    this->_border_bottom_right_data = nullptr;
+    this->_border_bottom_right_len = 0;
 
     if (this->_id == STANDALONE_THEME_ID) {
         return;
@@ -89,9 +101,39 @@ const uint8_t* Theme::border_top_left_image() const
     return this->_border_top_left_data;
 }
 
+const uint8_t* Theme::border_top_image() const
+{
+    return this->_border_top_data;
+}
+
+const uint8_t* Theme::border_top_right_image() const
+{
+    return this->_border_top_right_data;
+}
+
 const uint8_t* Theme::border_left_image() const
 {
     return this->_border_left_data;
+}
+
+const uint8_t* Theme::border_right_image() const
+{
+    return this->_border_right_data;
+}
+
+const uint8_t* Theme::border_bottom_left_image() const
+{
+    return this->_border_bottom_left_data;
+}
+
+const uint8_t* Theme::border_bottom_image() const
+{
+    return this->_border_bottom_data;
+}
+
+const uint8_t* Theme::border_bottom_right_image() const
+{
+    return this->_border_bottom_right_data;
 }
 
 //==================
@@ -131,10 +173,40 @@ bool Theme::load()
             this->_border_width,
             this->_border_width
         );
+        this->_border_top_len = this->load_image(
+            &(this->_border_top_data), "border-top.svg",
+            1,
+            this->_border_width
+        );
+        this->_border_top_right_len = this->load_image(
+            &(this->_border_top_right_data), "border-top-right.svg",
+            this->_border_width,
+            this->_border_width
+        );
         this->_border_left_len = this->load_image(
             &(this->_border_left_data), "border-left.svg",
             this->_border_width,
             1
+        );
+        this->_border_right_len = this->load_image(
+            &(this->_border_right_data), "border-right.svg",
+            this->_border_width,
+            1
+        );
+        this->_border_bottom_left_len = this->load_image(
+            &(this->_border_bottom_left_data), "border-bottom-left.svg",
+            this->_border_width,
+            this->_border_width
+        );
+        this->_border_bottom_len = this->load_image(
+            &(this->_border_bottom_data), "border-bottom.svg",
+            1,
+            this->_border_width
+        );
+        this->_border_bottom_right_len = this->load_image(
+            &(this->_border_bottom_right_data), "border-bottom-right.svg",
+            this->_border_width,
+            this->_border_width
         );
 
         return true;
