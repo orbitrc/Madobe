@@ -49,6 +49,7 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     QString info = "Begin paint: from - " + c->caption() + "\n";
     logger.info(info.toUtf8());
 
+    painter->setPen(Qt::NoPen);
     // Draw border.
     QRect borderRect = QRect(
         QPoint(0, 0),
@@ -57,7 +58,7 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
             c->height() + (this->borderWidth() * 2) + (this->titleBarHeight())
         )
     );
-    painter->setBrush(Qt::black);
+    painter->setBrush(Qt::green);
     painter->drawRect(borderRect);
     // Border top left.
     QRect borderTopLeftRect = QRect(
@@ -73,12 +74,19 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
             QImage::Format_RGBA8888);
         painter->drawImage(borderTopLeftRect, borderTopLeft, borderTopLeft.rect());
     }
+    // Border top.
+    QRect borderTopRect = QRect(
+        QPoint(this->borderWidth(), 0),
+        QSize(c->width(), this->borderWidth())
+    );
+    painter->setBrush(Qt::red);
+    painter->drawRect(borderTopRect);
     // Border left.
     QRect borderLeftRect = QRect(
         QPoint(0, this->borderWidth()),
         QSize(
             this->borderWidth(),
-            c->height() - (this->borderWidth() * 2)
+            c->height() + (this->titleBarHeight())
         )
     );
     if (this->m_theme != nullptr &&
@@ -101,7 +109,7 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
 
     // Draw title.
     painter->setPen(Qt::white);
-    QFont font("sans-serif", 12, QFont::Bold);
+    QFont font("sans-serif", this->titleFontSize(), QFont::Bold);
     painter->setFont(font);
     painter->drawText(titleBarRect, Qt::AlignCenter,
         c->caption() + " (" + this->m_themeId + ")");
@@ -182,7 +190,7 @@ int Decoration::titleBarHeight() const
 
 int Decoration::titleFontSize() const
 {
-    return 14;
+    return 12;
 }
 
 //=================
