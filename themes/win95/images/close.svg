@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="14" version="1.1" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+  <path style="fill:#000;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M0 13h16v1H0zM15 0h1v13h-1z"/>
+  <path style="fill:#fff;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M0 0h1v13H0zM1 0h14v1H1z"/>
+  <path style="fill:gray;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M1 12h14v1H1zM14 1h1v11h-1z"/>
+  <path style="fill:#dfdfdf;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M1 1h1v11H1zM2 1h12v1H2z"/>
+  <path style="fill:silver;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M2 2h12v10H2z"/>
+  <path style="fill:#000;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" d="M4 3v1h1v1h1v1h1v1H6v1H5v1H4v1h2V9h1V8h2v1h1v1h2V9h-1V8h-1V7H9V6h1V5h1V4h1V3h-2v1H9v1H7V4H6V3H5z"/>
+</svg>
