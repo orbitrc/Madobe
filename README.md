@@ -9,7 +9,7 @@ Prepare
 ### Ubuntu
 
 ```sh
-$ sudo apt install extra-cmake-modules
+$ sudo apt install cmake extra-cmake-modules
 ```
 
 Themes
