@@ -12,6 +12,16 @@ Prepare
 $ sudo apt install cmake extra-cmake-modules
 ```
 
+Build
+-----
+
+```sh
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
+
 Themes
 ------
 
