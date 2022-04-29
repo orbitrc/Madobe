@@ -36,3 +36,6 @@ theme-name/
  |- metadata.desktop
  +- theme.json
 ```
+#### Images
+
+TODO
