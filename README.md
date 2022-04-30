@@ -39,3 +39,8 @@ theme-name/
 #### Images
 
 TODO
+
+License
+-------
+
+Madobe is developed under MIT License. For the detail, see the LICENSE file.
