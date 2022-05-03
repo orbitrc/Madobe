@@ -10,13 +10,19 @@
   },
   "titleBar": {
     "height": 18,
-    "button": {
-      "width": 16,
-      "height": 14
+    "buttonGroup": {
+      "direction": "ltr",
+      "marginTop": 2,
+      "marginLeft": 2,
+      "button": {
+        "width": 16,
+        "height": 14
+      }
     },
     "active": {
       "color": "#000080",
       "title": {
+        "textAlign": "center",
         "color": "#ffffff",
         "fontSize": 14
       }
@@ -24,6 +30,7 @@
     "inactive": {
       "color": "#eeeeee",
       "title": {
+        "textAlign": "center",
         "color": "#000000",
         "fontSize": 14
       }
