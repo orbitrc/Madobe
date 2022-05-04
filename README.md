@@ -1,7 +1,7 @@
 Madobe
 ======
 
-Highly customizable KWin window decoration.
+Madobe(窓辺, まどべ) is a highly customizable KWin window decoration.
 
 Prepare
 -------
