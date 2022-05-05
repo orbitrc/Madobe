@@ -22,6 +22,14 @@ $ cmake ..
 $ make
 ```
 
+### Installation
+
+#### Arch Linux
+
+```sh
+$ sudo cp madobedecoration.so /usr/lib/qt/plugins/org.kde.kdecoration2/
+```
+
 Themes
 ------
 
