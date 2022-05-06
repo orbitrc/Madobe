@@ -13,6 +13,8 @@
 #define STANDALONE_RESIZE_WIDTH 5
 #define STANDALONE_SHADOW_WIDTH 40
 #define STANDALONE_TITLE_BAR_HEIGHT 30
+#define STANDALONE_BUTTON_WIDTH 6
+#define STANDALONE_BUTTON_HEIGHT 6
 #define MADOBE_THEMES_DIR        "/usr/share/madobe/themes"
 
 namespace madobe {
@@ -38,6 +40,8 @@ Theme::Theme(const char *id)
     this->_border_bottom_len = 0;
     this->_border_bottom_right_data = nullptr;
     this->_border_bottom_right_len = 0;
+    this->_close_data = nullptr;
+    this->_close_len = 0;
 
     if (this->_id == STANDALONE_THEME_ID) {
         return;
@@ -94,6 +98,24 @@ uint32_t Theme::title_bar_height() const
     }
 
     return this->_title_bar_height;
+}
+
+uint32_t Theme::button_width() const
+{
+    if (this->_id == STANDALONE_THEME_ID) {
+        return STANDALONE_BUTTON_WIDTH;
+    }
+
+    return this->_button_width;
+}
+
+uint32_t Theme::button_height() const
+{
+    if (this->_id == STANDALONE_THEME_ID) {
+        return STANDALONE_BUTTON_HEIGHT;
+    }
+
+    return this->_button_height;
 }
 
 const uint8_t* Theme::border_top_left_image() const
@@ -167,6 +189,14 @@ bool Theme::load()
             STANDALONE_SHADOW_WIDTH);
         this->_title_bar_height = theme_json.int_value("titleBar.height",
             STANDALONE_TITLE_BAR_HEIGHT);
+        this->_button_width = theme_json.int_value(
+            "titleBar.buttonGroup.button.width",
+            STANDALONE_BUTTON_WIDTH
+        );
+        this->_button_height = theme_json.int_value(
+            "titleBar.buttonGroup.button.height",
+            STANDALONE_BUTTON_HEIGHT
+        );
 
         this->_border_top_left_len = this->load_image(
             &(this->_border_top_left_data), "border-top-left.svg",

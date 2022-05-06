@@ -229,7 +229,12 @@ void Decoration::init()
     // Init buttons.
     if (this->m_closeButton == nullptr) {
         this->m_closeButton = new Button(KDecoration2::DecorationButtonType::Close, this, this);
-        this->m_closeButton->setGeometry(QRectF(4, 4, 20, 20));
+        QRectF geometry = QRectF(
+            4, 4,
+            this->m_theme->button_width(),
+            this->m_theme->button_height()
+        );
+        this->m_closeButton->setGeometry(geometry);
     }
 
     // Connections with settings.

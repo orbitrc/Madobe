@@ -34,6 +34,8 @@ public:
     uint32_t resize_width() const;
     uint32_t shadow_width() const;
     uint32_t title_bar_height() const;
+    uint32_t button_width() const;
+    uint32_t button_height() const;
 
     const uint8_t* border_top_left_image() const;
     const uint8_t* border_top_image() const;
@@ -59,6 +61,8 @@ private:
     uint32_t _resize_width;
     uint32_t _shadow_width;
     uint32_t _title_bar_height;
+    uint32_t _button_width;
+    uint32_t _button_height;
 
     uint8_t *_border_top_left_data;
     uint32_t _border_top_left_len;
@@ -83,6 +87,9 @@ private:
 
     uint8_t *_border_bottom_right_data;
     uint32_t _border_bottom_right_len;
+
+    uint8_t *_close_data;
+    uint32_t _close_len;
 };
 
 } // namespace madobe
