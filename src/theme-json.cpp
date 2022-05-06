@@ -39,7 +39,7 @@ int ThemeJson::int_value(const char *key, int alt) const
     auto keyPath = QString(key).split(".");
     auto& it = json;
     for (int i = 0; i < keyPath.length() - 1; ++i) {
-        if (!it.keys().contains(keyPath[0])) {
+        if (!it.keys().contains(keyPath[i])) {
             return alt;
         }
         it = it.value(keyPath[i]).toObject();
