@@ -230,7 +230,7 @@ void Decoration::init()
     if (this->m_closeButton == nullptr) {
         this->m_closeButton = new Button(KDecoration2::DecorationButtonType::Close, this, this);
         QRectF geometry = QRectF(
-            4, 4,
+            6, 6,
             this->m_theme->button_width(),
             this->m_theme->button_height()
         );
@@ -290,6 +290,11 @@ void Decoration::setThemeId(const QString &themeId)
 
         emit this->themeIdChanged(themeId);
     }
+}
+
+Theme* Decoration::theme() const
+{
+    return this->m_theme;
 }
 
 //=================

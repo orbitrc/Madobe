@@ -45,6 +45,7 @@ public:
     const uint8_t* border_bottom_left_image() const;
     const uint8_t* border_bottom_image() const;
     const uint8_t* border_bottom_right_image() const;
+    const uint8_t* close_image() const;
 
 private:
     bool load();

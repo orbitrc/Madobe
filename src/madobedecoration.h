@@ -37,6 +37,8 @@ public:
    QString themeId() const;
    void setThemeId(const QString& themeId);
 
+   Theme* theme() const;
+
 signals:
    void themeIdChanged(const QString& themeId);
 

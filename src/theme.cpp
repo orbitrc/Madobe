@@ -158,6 +158,11 @@ const uint8_t* Theme::border_bottom_right_image() const
     return this->_border_bottom_right_data;
 }
 
+const uint8_t* Theme::close_image() const
+{
+    return this->_close_data;
+}
+
 //==================
 // Private Methods
 //==================
@@ -180,6 +185,7 @@ bool Theme::load()
             return false;
         }
 
+        // Read theme.json file.
         ThemeJson theme_json(this->_json_path.c_str());
         this->_border_width = theme_json.int_value("border.width",
             STANDALONE_BORDER_WIDTH);
@@ -198,6 +204,7 @@ bool Theme::load()
             STANDALONE_BUTTON_HEIGHT
         );
 
+        // Load images.
         this->_border_top_left_len = this->load_image(
             &(this->_border_top_left_data), "border-top-left.svg",
             this->_border_width,
@@ -237,6 +244,11 @@ bool Theme::load()
             &(this->_border_bottom_right_data), "border-bottom-right.svg",
             this->_border_width,
             this->_border_width
+        );
+        this->_close_len = this->load_image(
+            &(this->_close_data), "close.svg",
+            this->_button_width,
+            this->_button_height
         );
 
         return true;
