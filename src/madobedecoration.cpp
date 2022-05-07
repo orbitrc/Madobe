@@ -35,6 +35,7 @@ Decoration::Decoration(QObject *parent, const QVariantList& args)
     this->m_closeButton = nullptr;
     this->m_themeId = "standalone";
     this->m_theme = nullptr;
+    this->m_shadow = nullptr;
 }
 
 Decoration::~Decoration()
@@ -225,6 +226,17 @@ void Decoration::init()
         this->resizeWidth() - this->borderWidth(),
         this->resizeWidth() - this->borderWidth()
     ));
+
+    if (this->m_shadow == nullptr) {
+        this->m_shadow = QSharedPointer<KDecoration2::DecorationShadow>::create();
+        this->m_shadow->setInnerShadowRect(QRect(0, 0, 10, 10));
+        this->m_shadow->setPadding(QMargins(2, 2, 2, 2));
+        QImage shadow(QSize(800, 1), QImage::Format_RGBA8888);
+        shadow.fill(Qt::gray);
+        this->m_shadow->setShadow(shadow);
+
+        this->setShadow(m_shadow);
+    }
 
     // Init buttons.
     if (this->m_closeButton == nullptr) {

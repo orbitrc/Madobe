@@ -24,6 +24,8 @@ Theme::Theme(const char *id)
     this->_id = id;
 
     // Init.
+    this->_shadow_width = STANDALONE_SHADOW_WIDTH;
+
     this->_border_top_left_data = nullptr;
     this->_border_top_left_len = 0;
     this->_border_top_data = nullptr;

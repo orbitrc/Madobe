@@ -4,6 +4,7 @@
 #include <QVariant>
 
 #include <KDecoration2/Decoration>
+#include <KDecoration2/DecorationShadow>
 
 namespace madobe {
 
@@ -58,6 +59,7 @@ private:
     Button *m_closeButton;
     QString m_themeId;
     Theme *m_theme;
+    QSharedPointer<KDecoration2::DecorationShadow> m_shadow;
 };
 
 } // namespace madobe
