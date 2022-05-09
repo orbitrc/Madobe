@@ -229,13 +229,12 @@ void Decoration::init()
 
     if (this->m_shadow == nullptr) {
         this->m_shadow = QSharedPointer<KDecoration2::DecorationShadow>::create();
-        // Don't touch it!
-        this->m_shadow->setInnerShadowRect(QRect(0, 0, 1, 1));
+        this->m_shadow->setInnerShadowRect(QRect(10, 10, 1, 1));
         this->m_shadow->setPadding(QMargins(10, 10, 10, 10));
 
         // Draw shadow with painter.
         QPainter painter;
-        QImage shadow(QSize(300, 300), QImage::Format_RGBA8888);
+        QImage shadow(QSize(30, 30), QImage::Format_RGBA8888);
         shadow.fill(QColor::fromRgb(100, 100, 100, 100));
         painter.begin(&shadow);
         painter.setPen(Qt::red);
