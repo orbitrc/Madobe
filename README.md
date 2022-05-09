@@ -3,17 +3,22 @@ Madobe
 
 Madobe(窓辺, まどべ) is a highly customizable KWin window decoration.
 
-Prepare
--------
+Build
+-----
 
-### Ubuntu
+### Preparation
+
+#### Arch Linux
+
+TODO
+
+#### Ubuntu
 
 ```sh
 $ sudo apt install cmake extra-cmake-modules
 ```
 
-Build
------
+### Compilation
 
 ```sh
 $ mkdir build
@@ -29,6 +34,10 @@ $ make
 ```sh
 $ sudo cp madobedecoration.so /usr/lib/qt/plugins/org.kde.kdecoration2/
 ```
+
+#### Ubuntu
+
+TODO
 
 Themes
 ------
