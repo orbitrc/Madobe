@@ -235,13 +235,25 @@ void Decoration::init()
         // Draw shadow with painter.
         QPainter painter;
         QImage shadow(QSize(30, 30), QImage::Format_RGBA8888);
-        shadow.fill(QColor::fromRgb(100, 100, 100, 100));
+        shadow.fill(Qt::transparent);
         painter.begin(&shadow);
-        painter.setPen(Qt::red);
+        painter.setPen(Qt::NoPen);
+        // Top left shadow.
         painter.setBrush(Qt::blue);
-        painter.drawRect(0, 0, 5, 5);
-        painter.setBrush(Qt::green);
-        painter.drawRect(0, 5, 5, 5);
+        painter.drawRect(0, 0, 10, 10);
+        // Top shadow.
+        QLinearGradient topShadow(0, 10, 0, 0);
+        topShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topShadow);
+        painter.drawRect(10, 0, 10, 10);
+        // Top right shadow.
+        painter.setBrush(Qt::red);
+        painter.drawRect(20, 0, 10, 10);
+        // Left shadow.
+        painter.setBrush(Qt::yellow);
+        painter.drawRect(0, 10, 10, 10);
         // End paint.
         painter.end();
 
