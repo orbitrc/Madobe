@@ -239,7 +239,11 @@ void Decoration::init()
         painter.begin(&shadow);
         painter.setPen(Qt::NoPen);
         // Top left shadow.
-        painter.setBrush(Qt::blue);
+        QLinearGradient topLeftShadow(10, 10, 0, 0);
+        topLeftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topLeftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topLeftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topLeftShadow);
         painter.drawRect(0, 0, 10, 10);
         // Top shadow.
         QLinearGradient topShadow(0, 10, 0, 0);
@@ -249,11 +253,26 @@ void Decoration::init()
         painter.setBrush(topShadow);
         painter.drawRect(10, 0, 10, 10);
         // Top right shadow.
-        painter.setBrush(Qt::red);
+        QLinearGradient topRightShadow(20, 10, 30, 0);
+        topRightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topRightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topRightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topRightShadow);
         painter.drawRect(20, 0, 10, 10);
         // Left shadow.
-        painter.setBrush(Qt::yellow);
+        QLinearGradient leftShadow(10, 0, 0, 0);
+        leftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        leftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        leftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(leftShadow);
         painter.drawRect(0, 10, 10, 10);
+        // Right shadow.
+        QLinearGradient rightShadow(20, 0, 30, 0);
+        rightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        rightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        rightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(rightShadow);
+        painter.drawRect(20, 10, 10, 10);
         // End paint.
         painter.end();
 
