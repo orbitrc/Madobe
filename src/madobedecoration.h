@@ -55,6 +55,9 @@ private slots:
 
     void loadTheme();
 
+    /// Called once from init() slot.
+    void initShadow();
+
 private:
     Button *m_closeButton;
     QString m_themeId;

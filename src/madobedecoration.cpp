@@ -227,59 +227,7 @@ void Decoration::init()
         this->resizeWidth() - this->borderWidth()
     ));
 
-    if (this->m_shadow == nullptr) {
-        this->m_shadow = QSharedPointer<KDecoration2::DecorationShadow>::create();
-        this->m_shadow->setInnerShadowRect(QRect(10, 10, 1, 1));
-        this->m_shadow->setPadding(QMargins(10, 10, 10, 10));
-
-        // Draw shadow with painter.
-        QPainter painter;
-        QImage shadow(QSize(30, 30), QImage::Format_RGBA8888);
-        shadow.fill(Qt::transparent);
-        painter.begin(&shadow);
-        painter.setPen(Qt::NoPen);
-        // Top left shadow.
-        QLinearGradient topLeftShadow(10, 10, 0, 0);
-        topLeftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
-        topLeftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
-        topLeftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
-        painter.setBrush(topLeftShadow);
-        painter.drawRect(0, 0, 10, 10);
-        // Top shadow.
-        QLinearGradient topShadow(0, 10, 0, 0);
-        topShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
-        topShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
-        topShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
-        painter.setBrush(topShadow);
-        painter.drawRect(10, 0, 10, 10);
-        // Top right shadow.
-        QLinearGradient topRightShadow(20, 10, 30, 0);
-        topRightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
-        topRightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
-        topRightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
-        painter.setBrush(topRightShadow);
-        painter.drawRect(20, 0, 10, 10);
-        // Left shadow.
-        QLinearGradient leftShadow(10, 0, 0, 0);
-        leftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
-        leftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
-        leftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
-        painter.setBrush(leftShadow);
-        painter.drawRect(0, 10, 10, 10);
-        // Right shadow.
-        QLinearGradient rightShadow(20, 0, 30, 0);
-        rightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
-        rightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
-        rightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
-        painter.setBrush(rightShadow);
-        painter.drawRect(20, 10, 10, 10);
-        // End paint.
-        painter.end();
-
-        this->m_shadow->setShadow(shadow);
-
-        this->setShadow(m_shadow);
-    }
+    this->initShadow();
 
     // Init buttons.
     if (this->m_closeButton == nullptr) {
@@ -398,6 +346,63 @@ void Decoration::loadTheme()
         delete this->m_theme;
     }
     this->m_theme = new Theme(themeId.toUtf8());
+}
+
+void Decoration::initShadow()
+{
+    if (this->m_shadow == nullptr) {
+        this->m_shadow = QSharedPointer<KDecoration2::DecorationShadow>::create();
+        this->m_shadow->setInnerShadowRect(QRect(10, 10, 1, 1));
+        this->m_shadow->setPadding(QMargins(10, 10, 10, 10));
+
+        // Draw shadow with painter.
+        QPainter painter;
+        QImage shadow(QSize(30, 30), QImage::Format_RGBA8888);
+        shadow.fill(Qt::transparent);
+        painter.begin(&shadow);
+        painter.setPen(Qt::NoPen);
+        // Top left shadow.
+        QLinearGradient topLeftShadow(10, 10, 0, 0);
+        topLeftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topLeftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topLeftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topLeftShadow);
+        painter.drawRect(0, 0, 10, 10);
+        // Top shadow.
+        QLinearGradient topShadow(0, 10, 0, 0);
+        topShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topShadow);
+        painter.drawRect(10, 0, 10, 10);
+        // Top right shadow.
+        QLinearGradient topRightShadow(20, 10, 30, 0);
+        topRightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        topRightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        topRightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(topRightShadow);
+        painter.drawRect(20, 0, 10, 10);
+        // Left shadow.
+        QLinearGradient leftShadow(10, 0, 0, 0);
+        leftShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        leftShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        leftShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(leftShadow);
+        painter.drawRect(0, 10, 10, 10);
+        // Right shadow.
+        QLinearGradient rightShadow(20, 0, 30, 0);
+        rightShadow.setColorAt(0, QColor::fromRgb(0, 0, 0, 60));
+        rightShadow.setColorAt(0.3, QColor::fromRgb(0, 0, 0, 50));
+        rightShadow.setColorAt(1, QColor::fromRgb(0, 0, 0, 0));
+        painter.setBrush(rightShadow);
+        painter.drawRect(20, 10, 10, 10);
+        // End paint.
+        painter.end();
+
+        this->m_shadow->setShadow(shadow);
+
+        this->setShadow(m_shadow);
+    }
 }
 
 } // namespace madobe
