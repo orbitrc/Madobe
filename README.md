@@ -37,7 +37,9 @@ $ sudo cp madobedecoration.so /usr/lib/qt/plugins/org.kde.kdecoration2/
 
 #### Ubuntu
 
-TODO
+```sh
+$ sudo cp madobedecoration.so /usr/lib/x86_64-linux-gnu/qt5/plugins/org.kde.kdecoration2/
+```
 
 Themes
 ------
