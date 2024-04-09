@@ -32,7 +32,7 @@ $ make
 #### Arch Linux
 
 ```sh
-$ sudo cp madobedecoration.so /usr/lib/qt/plugins/org.kde.kdecoration2/
+$ sudo cp madobedecoration.so /usr/lib/qt6/plugins/org.kde.kdecoration2/
 ```
 
 #### Ubuntu

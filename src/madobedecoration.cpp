@@ -44,7 +44,7 @@ Decoration::~Decoration()
 
 void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
 {
-    auto c = this->client().toStrongRef();
+    auto c = this->client();
 
     Logger logger;
     QString info = "Begin paint: from - " + c->caption() + "\n";
@@ -198,9 +198,9 @@ void Decoration::paint(QPainter *painter, const QRect& repaintRegion)
     }
 }
 
-void Decoration::init()
+bool Decoration::init()
 {
-    auto c = this->client().toStrongRef();
+    auto c = this->client();
     auto s = this->settings();
     (void)c;
 
@@ -241,7 +241,7 @@ void Decoration::init()
     }
 
     // Connections with settings.
-    QObject::connect(s.data(), &KDecoration2::DecorationSettings::reconfigured,
+    QObject::connect(s.get(), &KDecoration2::DecorationSettings::reconfigured,
                      this, [this]() {
         this->readConfFileThemeId();
     });
@@ -251,6 +251,8 @@ void Decoration::init()
                      this, &Decoration::loadTheme);
 
     this->update();
+
+    return true;
 }
 
 int Decoration::shadowWidth() const
@@ -306,7 +308,7 @@ Theme* Decoration::theme() const
 
 void Decoration::updateBorder()
 {
-    auto c = this->client().toStrongRef();
+    auto c = this->client();
 
     c->width();
 }
@@ -351,7 +353,7 @@ void Decoration::loadTheme()
 void Decoration::initShadow()
 {
     if (this->m_shadow == nullptr) {
-        this->m_shadow = QSharedPointer<KDecoration2::DecorationShadow>::create();
+        this->m_shadow = std::make_shared<KDecoration2::DecorationShadow>();
         this->m_shadow->setInnerShadowRect(QRect(10, 10, 1, 1));
         this->m_shadow->setPadding(QMargins(10, 10, 10, 10));
 

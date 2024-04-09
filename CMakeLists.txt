@@ -1,17 +1,19 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 project(madobe)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(KF5_MIN_VERSION "5.68.0")
+set(QT_MIN_VERSION "6.6.0")
+set(KF6_MIN_VERSION "6.0.0")
 
-find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+find_package(ECM 6.0.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem)
-find_package(Qt5 CONFIG REQUIRED COMPONENTS DBus)
+find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem)
+find_package(Qt6 CONFIG REQUIRED COMPONENTS DBus)
 
-include(KDEInstallDirs)
+set(QT_MAJOR_VERSION 5)
+include(KDEInstallDirs6)
 include(KDECMakeSettings)
 
 find_package(KDecoration2 REQUIRED)
@@ -42,12 +44,12 @@ target_compile_options(madobedecoration PUBLIC ${LIBRSVG_CFLAGS_OTHER})
 
 target_link_libraries(madobedecoration
     PUBLIC
-        Qt5::Core
-        Qt5::Gui
-        Qt5::DBus
+        Qt6::Core
+        Qt6::Gui
+        Qt6::DBus
     PRIVATE
         KDecoration2::KDecoration
-        KF5::CoreAddons
-        KF5::GuiAddons
+        KF6::CoreAddons
+        KF6::GuiAddons
     ${LIBRSVG_LIBRARIES}
 )

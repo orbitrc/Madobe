@@ -1,6 +1,8 @@
 #ifndef _MADOBEDECORATION_H
 #define _MADOBEDECORATION_H
 
+#include <memory>
+
 #include <QVariant>
 
 #include <KDecoration2/Decoration>
@@ -44,7 +46,7 @@ signals:
    void themeIdChanged(const QString& themeId);
 
 public slots:
-    void init() override;
+    bool init() override;
 
 private slots:
     void updateBorder();
@@ -62,7 +64,7 @@ private:
     Button *m_closeButton;
     QString m_themeId;
     Theme *m_theme;
-    QSharedPointer<KDecoration2::DecorationShadow> m_shadow;
+    std::shared_ptr<KDecoration2::DecorationShadow> m_shadow;
 };
 
 } // namespace madobe

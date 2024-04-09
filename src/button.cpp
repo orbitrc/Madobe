@@ -24,7 +24,7 @@ Button::~Button()
 
 void Button::paint(QPainter *painter, const QRect &repaintRegion)
 {
-    auto decoration = static_cast<Decoration*>(this->decoration().data());
+    auto decoration = static_cast<Decoration*>(this->decoration());
     painter->setBrush(Qt::red);
     painter->setPen(Qt::NoPen);
     painter->drawRect(this->geometry());
